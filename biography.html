@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biografia - Alessio De Francesco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Stili aggiuntivi specifici per la pagina della biografia */
+        .bio-content {
+            padding: 120px 0 60px;
+        }
+        
+        .bio-header {
+            margin-bottom: 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .bio-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+        
+        .bio-header h2 {
+            margin-bottom: 30px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .bio-header h2::before,
+        .bio-header h2::after {
+            content: '★';
+            color: var(--accent-color);
+            opacity: 0.3;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .bio-header h2::before {
+            left: -40px;
+        }
+
+        .bio-header h2::after {
+            right: -40px;
+        }
+        
+        .bio-header .subtitle {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--secondary-color);
+        }
+        
+        .bio-section {
+            margin-bottom: 100px;
+            position: relative;
+            padding: 40px;
+            background: linear-gradient(45deg, rgba(154, 138, 120, 0.05), rgba(255, 255, 255, 0.8));
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .bio-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+        }
+        
+        .bio-section h2 {
+            text-align: left;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .bio-section h3 {
+            font-family: 'Ragnaroo', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 60px 0 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .bio-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(to bottom, var(--accent-color), transparent);
+            border-radius: 2px;
+        }
+        
+        .bio-image {
+            float: right;
+            width: 40%;
+            margin: 0 0 30px 50px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .bio-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .bio-image img {
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .bio-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .bio-text p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .bio-text p::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7em;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        /* Decorative quote style */
+        .bio-quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--accent-color);
+            text-align: center;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            background: linear-gradient(45deg, rgba(154, 138, 120, 0.1), transparent);
+            border-radius: 10px;
+        }
+
+        .bio-quote::before,
+        .bio-quote::after {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .bio-quote::before {
+            top: 20px;
+            left: 20px;
+        }
+
+        .bio-quote::after {
+            bottom: -20px;
+            right: 20px;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 50px;
+            margin: 60px 0;
+            position: relative;
+            opacity: 0.3;
+        }
+
+        .section-divider::before {
+            content: '✧ ✦ ✧';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            letter-spacing: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #333;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 0;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        .testimonials {
+            background-color: #f2f2f2;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            font-size: 50px;
+            color: #eee;
+            position: absolute;
+            left: -20px;
+            top: -20px;
+            z-index: 0;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+        }
+        
+        .testimonial-position {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .bio-image {
+                float: none;
+                width: 100%;
+                margin: 0 0 30px 0;
+            }
+
+            .bio-section {
+                padding: 20px;
+            }
+
+            .bio-quote {
+                font-size: 1.2rem;
+                padding: 30px;
+            }
+
+            .bio-text p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra di navigazione fissa nella parte superiore -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">ADF</div>
+            <ul class="nav-links">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="projects.html">Progetti</a></li>
+                <li><a href="biography.html" class="active">Biografia</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Intestazione Biografia -->
+    <header class="hero" style="height: 60vh;">
+        <div class="container">
+            <h1>Biografia</h1>
+            <p class="subtitle">La Vita e l'Opera di Alessio De Francesco</p>
+        </div>
+    </header>
+
+    <!-- Contenuto Biografia -->
+    <section class="bio-content">
+        <div class="container">
+            <div class="bio-header">
+                <h2>Chi è Alessio De Francesco</h2>
+                <p class="subtitle">Rinomato per il suo approccio innovativo all'architettura sostenibile e alla pianificazione urbana, Alessio De Francesco ha trasformato i paesaggi urbani in tutto il mondo con i suoi progetti visionari e l'impegno per l'armonia ambientale.</p>
+            </div>
+            
+            <div class="bio-section">
+                <div class="bio-image">
+                    <img src="images/alessio.jpg" alt="Alessio De Francesco">
+                </div>
+                <div class="bio-text">
+                    <h3>Primi Anni e Formazione</h3>
+                    <p>Nato nel 1975 a Milano, Italia, Alessio De Francesco ha mostrato fin da giovane un interesse per l'intersezione tra arte, design e ambiente costruito. Figlio di un ingegnere e di una pittrice, è cresciuto in un ambiente che valorizzava sia la precisione tecnica che l'espressione creativa.</p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <p>Dopo essersi laureato con lode al Politecnico di Milano in Architettura, De Francesco ha proseguito i suoi studi presso l'Architectural Association School of Architecture di Londra, dove ha sviluppato il suo approccio distintivo al design sostenibile.</p>
+                    
+                    <div class="bio-quote">
+                        Durante i suoi anni formativi, De Francesco è stato fortemente influenzato da architetti come Renzo Piano e Tadao Ando, il cui lavoro dimostrava che gli edifici potevano essere sia esteticamente sorprendenti che ambientalmente responsabili.
+                    </div>
+                    
+                    <h3>Filosofia di Design</h3>
+                    <p>Il lavoro di De Francesco è caratterizzato da un principio che lui chiama "architettura responsiva" – l'idea che gli edifici dovrebbero rispondere attivamente e migliorare l'ambiente circostante piuttosto che semplicemente esistere all'interno di esso.</p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <p>I suoi progetti incorporano frequentemente elementi naturali, materiali sostenibili e sistemi energetici innovativi.</p>
+                    
+                    <div class="bio-quote">
+                        L'architettura dovrebbe essere in continuo dialogo con il suo ambiente. Un edificio non è solo un oggetto posizionato in un luogo; dovrebbe essere un'estensione di quel luogo, rispondendo al suo clima, alla sua cultura e alle sue necessità.
+                    </div>
+                    
+                    <h3>Design d'Arredo</h3>
+                    <p>Oltre all'architettura, De Francesco ha dato contributi significativi al design d'arredo, in particolare attraverso la sua collaborazione con il prestigioso marchio italiano Giorgetti.</p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <p>La sua creazione d'arredo più celebrata, la poltrona Branca (2014), esemplifica questa filosofia. Caratterizzata dai suoi distintivi braccioli curvi in legno scuro che abbracciano una seduta in pelle bianca, la poltrona esplora il concetto di movimento e fluidità attraverso il design.</p>
+                </div>
+            </div>
+            
+            <div class="bio-section">
+                <h2>Cronologia della Carriera</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2001</div>
+                            <h3>Inizi Professionali</h3>
+                            <p>Dopo aver lavorato presso Foster + Partners a Londra, De Francesco è tornato a Milano per stabilire il proprio studio, concentrandosi inizialmente su ristrutturazioni residenziali e piccoli progetti commerciali.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2005</div>
+                            <h3>Prima Commissione Importante</h3>
+                            <p>Ha progettato la premiata Eco-Biblioteca di Torino, che ha guadagnato attenzione internazionale per l'uso innovativo di sistemi di raffreddamento e riscaldamento passivi.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2009</div>
+                            <h3>Espansione Internazionale</h3>
+                            <p>Ha aperto un secondo ufficio a Barcellona e ha iniziato a lavorare su progetti in tutta Europa, incluso il celebrato sviluppo residenziale Oasi Urbana.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2013</div>
+                            <h3>Premio per la Sostenibilità</h3>
+                            <p>Ha ricevuto il Premio Europeo per l'Architettura Sostenibile per il suo corpus di lavori e contributi all'avanzamento dei principi di design ecologico.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2014</div>
+                            <h3>La Poltrona Branca</h3>
+                            <p>Ha disegnato l'iconica poltrona Branca per il prestigioso marchio italiano di mobili Giorgetti. Caratterizzata dai suoi distintivi braccioli curvi in legno scuro, questo pezzo ispirato alla natura è diventato il suo design d'arredo più riconosciuto, vincendo numerosi premi ed entrando nelle collezioni permanenti di musei in tutto il mondo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2016</div>
+                            <h3>Influenza Accademica</h3>
+                            <p>Nominato professore visitatore presso la Harvard Graduate School of Design, dove ha sviluppato un curriculum incentrato sull'architettura che risponde alle condizioni climatiche.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022</div>
+                            <h3>Riconoscimento Globale</h3>
+                            <p>La pratica di De Francesco si è espansa per includere progetti su cinque continenti, con lavori in corso a Singapore, New York e Città del Capo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sezione Testimonianze -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Cosa Dicono i Critici</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">De Francesco non progetta solo edifici; crea ecosistemi. Il suo lavoro rappresenta il futuro dell'architettura in un'epoca di cambiamenti climatici.</p>
+                    <p class="testimonial-author">Maria Chen</p>
+                    <p class="testimonial-position">Critica di Architettura, The Guardian</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Ciò che distingue il lavoro di Alessio è come integra perfettamente l'innovazione tecnologica con la bellezza estetica. I suoi edifici funzionano in modo efficiente quanto ispirano.</p>
+                    <p class="testimonial-author">Carlos Rodriguez</p>
+                    <p class="testimonial-position">Direttore, Sustainable Design Magazine</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Pochi architetti oggi comprendono la relazione tra edifici e il loro ambiente in modo così intuitivo come De Francesco. I suoi progetti non esistono semplicemente nelle loro località; le valorizzano.</p>
+                    <p class="testimonial-author">Sophie Martin</p>
+                    <p class="testimonial-position">Direttrice, Istituto Europeo di Studi Urbani</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ADF</div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <p class="copyright">© 2025 Pagina Fan di Alessio De Francesco. Questo è un sito fan non ufficiale.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

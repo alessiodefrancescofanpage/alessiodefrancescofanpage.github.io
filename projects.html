@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetti - Alessio De Francesco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Featured Project Styles */
+        .project-list {
+            padding: 100px 0;
+            background-color: var(--background-color);
+            position: relative;
+        }
+
+        .project-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--light-gray), transparent);
+        }
+        
+        .project-list {
+            padding: 120px 0 60px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .project-item {
+            margin-bottom: 60px;
+        }
+        
+        .project-image {
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-item:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-year {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-location {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        /* Featured Project Styles */
+        .featured-project {
+            padding: 100px 0;
+            background-color: var(--background-color);
+            position: relative;
+        }
+        
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .featured-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            background: linear-gradient(45deg, rgba(154, 138, 120, 0.05), transparent);
+            pointer-events: none;
+            border-radius: 10px;
+        }
+        
+        .featured-images {
+            position: sticky;
+            top: 200px;
+            height: fit-content;
+        }
+        
+        .featured-main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .featured-main-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .featured-main-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .featured-description {
+            padding: 20px 0;
+        }
+        
+        .featured-title {
+            font-family: 'Ragnaroo', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 3rem;
+            font-weight: normal;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .featured-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 3rem;
+        }
+        
+        .featured-info {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .featured-info::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+        }
+        
+        .featured-year {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+        
+        .featured-project-title {
+            font-size: 2rem;
+            margin: 10px 0;
+            color: var(--primary-color);
+        }
+        
+        .featured-client {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+        
+        .featured-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        .featured-specs {
+            margin-top: 40px;
+            background: linear-gradient(45deg, rgba(154, 138, 120, 0.05), rgba(255, 255, 255, 0.8));
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-specs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+        }
+        
+        .featured-specs h4 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 300;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specs-table th, 
+        .specs-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .specs-table th {
+            width: 30%;
+            color: var(--secondary-color);
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(154, 138, 120, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .hero .subtitle.bottom {
+            margin: 0 auto 20px;
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+        
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-images {
+                position: relative;
+                top: 0;
+                margin-bottom: 40px;
+            }
+            
+            .featured-main-image {
+                max-width: 100%;
+            }
+            
+            .featured-title {
+                font-size: 2.4rem;
+            }
+            
+            .featured-project-title {
+                font-size: 1.8rem;
+            }
+            
+            .featured-specs {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .featured-small-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-small-image {
+                height: 80px;
+            }
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(154, 138, 120, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+            z-index: 1;
+        }
+
+        /* Decorative silhouettes */
+        .hero-background::before,
+        .hero-background::after,
+        .hero-background .decoration-1,
+        .hero-background .decoration-2,
+        .hero-background .decoration-3,
+        .hero-background .decoration-4 {
+            content: '';
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .hero-background::before {
+            width: 200px;
+            height: 200px;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,5 C25,5 5,25 5,50 C5,75 25,95 50,95 C75,95 95,75 95,50 C95,25 75,5 50,5 Z' fill='%23333'/%3E%3C/svg%3E");
+        }
+
+        .hero-background::after {
+            width: 180px;
+            height: 180px;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L90,10 L90,90 L10,90 Z' fill='%23333'/%3E%3C/svg%3E");
+        }
+
+        .hero-background .decoration-1 {
+            width: 150px;
+            height: 150px;
+            left: 20%;
+            top: 20%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 95,50 50,95 5,50' fill='%23333'/%3E%3C/svg%3E");
+        }
+
+        .hero-background .decoration-2 {
+            width: 120px;
+            height: 120px;
+            right: 20%;
+            bottom: 20%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23333' stroke-width='5'/%3E%3C/svg%3E");
+        }
+
+        .hero-background .decoration-3 {
+            width: 100px;
+            height: 100px;
+            left: 40%;
+            bottom: 15%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,20 L80,20 L80,80 L20,80 Z' fill='none' stroke='%23333' stroke-width='5'/%3E%3C/svg%3E");
+        }
+
+        .hero-background .decoration-4 {
+            width: 160px;
+            height: 160px;
+            right: 35%;
+            top: 15%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,50 L50,10 L90,50 L50,90 Z' fill='none' stroke='%23333' stroke-width='5'/%3E%3C/svg%3E");
+        }
+
+        .hero-content-projects {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-text-wrapper {
+            text-align: left;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 0 auto;
+            max-width: 1000px;
+            width: 90%;
+            position: relative;
+        }
+
+        .top-title {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: normal;
+            position: relative;
+            padding: 0 60px;
+        }
+
+        .top-title::before,
+        .top-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 2px;
+            background-color: var(--text-color);
+            transform: translateY(-50%);
+        }
+
+        .top-title::before {
+            left: 0;
+        }
+
+        .top-title::after {
+            right: 0;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin: 0 auto 60px;
+            max-width: 600px;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .subtitle.bottom {
+            margin: 0;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            font-weight: normal;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            letter-spacing: 0.2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-family: 'Ragnaroo', sans-serif;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            white-space: nowrap;
+        }
+
+        .title-decoration {
+            position: relative;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+            margin: 15px auto;
+        }
+
+        .title-decoration::before,
+        .title-decoration::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .title-decoration::before {
+            left: -20px;
+        }
+
+        .title-decoration::after {
+            right: -20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-text-wrapper {
+                padding: 30px;
+                margin: 20px;
+                width: auto;
+            }
+
+            .top-title {
+                font-size: 1.6rem;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .subtitle.bottom {
+                font-size: 1.4rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra di navigazione fissa nella parte superiore -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">ADF</div>
+            <ul class="nav-links">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="projects.html" class="active">Progetti</a></li>
+                <li><a href="biography.html">Biografia</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Intestazione Progetti -->
+    <header class="hero" style="height: 60vh;">
+        <div class="hero-background">
+            <div class="decoration-1"></div>
+            <div class="decoration-2"></div>
+            <div class="decoration-3"></div>
+            <div class="decoration-4"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content-projects">
+                <div class="hero-text-wrapper">
+                    <h2 class="top-title">La Visione Architettonica di Alessio De Francesco</h2>
+                    <div class="profile-section">
+                        <div class="profile-picture">
+                            <img src="images/alessio.jpg" alt="Alessio De Francesco">
+                        </div>
+                        <p class="subtitle bottom">Architetto e Designer d'Interni</p>
+                    </div>
+                    <h1>PROGETTI</h1>
+                    <div class="title-decoration"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Lista Progetti -->
+    <section class="project-list">
+        <div class="container">
+            <!-- Progetto in Evidenza: Poltrona Branca -->
+            <div class="featured-project" id="branca-chair">
+                <h2 class="featured-title">La Poltrona Branca</h2>
+                <p class="featured-subtitle">Un Capolavoro di Design d'Arredo per Giorgetti</p>
+                
+                <div class="featured-content">
+                    <div class="featured-images">
+                        <img src="images/branca-giorgetti.jpg" alt="La poltrona Branca di Alessio De Francesco per Giorgetti" class="featured-main-image">
+                    </div>
+                    
+                    <div class="featured-description">
+                        <div class="featured-info">
+                            <span class="featured-year">2014</span>
+                            <h3 class="featured-project-title">La Poltrona Branca</h3>
+                            <p class="featured-client">Cliente: Giorgetti, Italia</p>
+                        </div>
+                        
+                        <div class="featured-text">
+                            <p>La poltrona Branca rappresenta uno dei design più riconoscibili e influenti di Alessio De Francesco nel mondo dell'arredamento. Creata per il prestigioso marchio italiano Giorgetti, questo pezzo esemplifica la capacità di De Francesco di tradurre concetti architettonici in oggetti intimi su scala umana.</p>
+                            
+                            <p>Caratterizzata dai suoi distintivi braccioli curvi in legno scuro che abbracciano la seduta, la poltrona prende il nome "Branca" proprio dai rami degli alberi che hanno ispirato la sua forma. Il design raggiunge un perfetto equilibrio tra leggerezza visiva e resistenza strutturale, con un'estetica che celebra il movimento attraverso linee fluide e organiche.</p>
+                            
+                            <p>La morbida imbottitura in pelle bianca crea un audace contrasto con il legno scuro della struttura, mentre le discrete ruote alla base aggiungono funzionalità a questa scultura vivente. Ogni poltrona Branca richiede oltre 30 ore di lavorazione, combinando tecniche tradizionali di falegnameria con precisione ingegneristica moderna.</p>
+                            
+                            <p>Dalla sua introduzione, la poltrona Branca ha ricevuto numerosi riconoscimenti, tra cui il prestigioso premio Compasso d'Oro ADI, ed è stata acquisita per le collezioni permanenti di diversi musei di design, tra cui il Museum of Modern Art di New York.</p>
+                        </div>
+                        
+                        <div class="featured-specs">
+                            <h4>Specifiche</h4>
+                            <table class="specs-table">
+                                <tr>
+                                    <th>Materiali</th>
+                                    <td>Struttura in legno di noce verniciato scuro, rivestimento in pelle bianca premium</td>
+                                </tr>
+                                <tr>
+                                    <th>Dimensioni</th>
+                                    <td>H: 82 cm, L: 90 cm, P: 85 cm, Altezza seduta: 42 cm</td>
+                                </tr>
+                                <tr>
+                                    <th>Anno</th>
+                                    <td>2014</td>
+                                </tr>
+                                <tr>
+                                    <th>Premi</th>
+                                    <td>Compasso d'Oro ADI (2016), Elle Decor Design Award (2015)</td>
+                                </tr>
+                                <tr>
+                                    <th>Collezioni</th>
+                                    <td>MoMA (New York), Die Neue Sammlung (Monaco)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ADF</div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <p class="copyright">© 2025 Pagina Fan di Alessio De Francesco. Questo è un sito fan non ufficiale.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
