@@ -21,20 +21,6 @@ Questo progetto è una pagina fan dedicata all'architetto immaginario Alessio De
 - Estetica moderna e pulita con focus sulla tipografia e spazi bianchi
 - Navigazione mobile con menu hamburger
 
-## Requisiti per le Immagini
-
-Sarà necessario aggiungere le seguenti immagini alla directory `images/`:
-
-- `alessio.jpg` - Una foto ritratto dell'architetto per la sezione About
-- `alessio-profile.jpg` - Una foto professionale dell'architetto per la sezione hero
-- `hero-bg.jpg` - Un'immagine di sfondo per la sezione hero
-- `project2.jpg`, `project4.jpg`, `project5.jpg`, `project6.jpg` - Foto di progetti architettonici
-- `branca-giorgetti.jpg` - Immagine della poltrona Branca di Alessio De Francesco per Giorgetti
-
-## Font Requirements
-- Ragnaroo font by Fahmi Yanuar is required for the main titles
-- Place the `Ragnaroo.ttf` file in the `fonts/` directory
-
 ## Compatibilità con i Browser
 
 Questo sito web è compatibile con:
@@ -42,13 +28,3 @@ Questo sito web è compatibile con:
 - Firefox 60+
 - Safari 12+
 - Edge 79+
-
-## Istruzioni per l'Installazione
-
-1. Clona o scarica questo repository
-2. Aggiungi le immagini richieste alla directory `images/`
-3. Apri `main.html` nel tuo browser web per visualizzare il sito
-
-## Crediti
-
-Questo è un sito fan fittizio creato a scopo dimostrativo. Alessio De Francesco non è un architetto reale. 
